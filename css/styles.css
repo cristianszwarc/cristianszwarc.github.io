@@ -1,0 +1,58 @@
+/*
+96ACB7 gris claro
+596475 gris oscuro
+D7CDCC palido
+906793 ottopus
+*/
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+}
+
+a {
+  color: #596475;
+}
+
+a:focus, a:hover {
+  color: #906793;
+}
+
+#sidebar-wrapper {
+  background-color: #906793;
+}
+
+#mainContainer {
+  margin-left: 15px;
+  max-width: 750px;
+}
+
+#mainContainer hr {
+  margin-top: auto;
+}
+
+.translated {
+  float: right;
+  font-size: 10pt;
+  padding-top: 10px;
+}
+
+.translated a {
+  margin-left: 5px;
+}
+
+.translated a.active {
+  text-decoration: underline;;
+}
+
+#sidebar-wrapper .tentacles {
+  fill: #D7CDCC;
+  position: absolute;
+  bottom: 0;
+  width: 250px;
+  height: 185px;
+}
