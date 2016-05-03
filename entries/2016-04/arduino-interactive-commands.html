@@ -143,19 +143,21 @@
             <hr>
             <div class="post">
   <span class="post-date">22 Apr 2016</span>
-  <p>Months ago, some friends were having troubles with the water supply on their farm, so I started to play with a couple of Arduino boards.</p>
+  <p>Months ago, some friends were having troubles with the water tanks on their farm, so I started to play with a couple of Arduino boards.</p>
 
-<p>As usual, as a proof of concept, this is just a bunch of code and wires entangled together with hot glue.</p>
+<p>The goal? keep the water tanks filled by running a remote pump.</p>
 
-<p>Since this has been working stable for some time, I started to develop a <em>real</em> version with cleaner code and with the hardware in a more permanent setup.</p>
+<p>As usual, as a proof of concept, this started as a bunch of code and wires entangled together with hot glue.</p>
 
-<p>Receiver and transmitter are using Ethernet shields and they are connected by a local network that connect multiple buildings across large distances.</p>
+<p>Since this has been working stable for some time, now I have started the development of a <em>real</em> version, with the hardware in a more permanent setup and cleaner code.</p>
+
+<p>Receiver and transmitter are using Ethernet shields and they are connected by a local network that connect multiple buildings across large distances over the farm.</p>
 
 <p>Having the boards connected to a network allowed the addition of some extra goodies, like having <strong>Pushover</strong> notifications when something is wrong and real time monitoring of the tank status.</p>
 
 <h3 id="long-life-to-the-serial-port">Long life to the serial port</h3>
 
-<p>The first thing I wanted to add is an “easy enough” way to configure the devices in case they need to be replaced or the network configuration is changed.</p>
+<p>The first thing I wanted to add to this project is an “easy enough” way to configure the devices in case they need to be replaced or the network configuration is changed.</p>
 
 <p>Yes, I know.. would be nice to have a web page since this is using Ethernet, but the extra cost on memory and code does not make sense for something that would be done one or twice over the lifespan of each board.</p>
 
@@ -204,5 +206,17 @@ $("#menu-toggle").click(function(e) {
 
 
     </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-77109525-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
   </body>
 </html>

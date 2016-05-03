@@ -143,19 +143,19 @@
             <hr>
             <div class="post">
   <span class="post-date">13 Mar 2016</span>
-  <p>The paradox of choice (<a href="https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=enN52MGjskyoalXaraOC3jg&amp;bvm=bv.116636494,d.dGY">TED</a>) left me without a functional website for years…</p>
+  <p>The paradox of choice (<a href="https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=enN52MGjskyoalXaraOC3jg&amp;bvm=bv.116636494,d.dGY">TED</a>) left me without a working website for years…</p>
 
 <p>In a new attempt to finally have and keep a personal website I’m trying Jekyll.</p>
 
 <h3 id="bilingual-jekyll">Bilingual Jekyll</h3>
-<p>Despite I have tried to “keep this simple” I was in need of a website with support for English and Spanish, so I tried some plugins, some were too complex and other were obsolete.</p>
+<p>Despite I have tried to “keep it simple” I was in need of a website with support for English and Spanish, so I tried some plugins, some were too complex and other were obsolete.</p>
 
 <p>I then tried to have both languages working without plugins, is possible but you lose the pagination.</p>
 
-<p>Here I will share some of the tricks I’m using on liquid and a link to the pagination plugin I wrote to have pagination for multiple languages with category support.</p>
+<p>Here I will share some of the tricks I’m using on liquid (templating language) and a link to the pagination plugin I wrote to have pagination for multiple languages with category support.</p>
 
 <h4 id="add-the-language-to-any-pagepost">Add the language to any page/post</h4>
-<p>This is the way of knowing the “current language” and will be used to filter the pages/posts on menus and lists.</p>
+<p>This is the way of knowing the “current language”, it will be used to filter the pages/posts on menus and lists.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>---
 layout: page
@@ -167,7 +167,7 @@ Phasellus gravida semper nisi. Nunc nonummy metus.
 </div>
 
 <h4 id="filter-pages-to-build-a-menu">Filter pages to build a menu</h4>
-<p>Because all pages will have the previously added language, you can then filter and create a dynamic menu.</p>
+<p>Because all pages will have the previously added language, you can then loop over the pages and create a dynamic menu.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>
 
@@ -193,7 +193,7 @@ Phasellus gravida semper nisi. Nunc nonummy metus.
 <h4 id="add-links-between-translated-postspages">Add links between translated posts/pages</h4>
 <p>Some times you will have pages/posts written in both languages, and is good to have a link between the two versions.</p>
 
-<p>The trick I’m using (of course I saw this around), is to have the link to the translated when is available.</p>
+<p>The trick I’m using (of course I saw this around), is to have the link to the translated post as a tag and use it when available.</p>
 
 <p>Example <code class="highlighter-rouge">2016-03-01-here_we_go_again.md</code></p>
 
@@ -221,9 +221,9 @@ Version en Español...
 </code></pre>
 </div>
 
-<p>As you can see, both articles contains a <code class="highlighter-rouge">translated</code> variable pointing to the other one.</p>
+<p>As you can see, both articles contains a <code class="highlighter-rouge">translated</code> tag pointing to the other one.</p>
 
-<p>You can then add a little piece of liquid code to show the link only when is available so you can ignore it when you only write an article using only one language.</p>
+<p>You can then add a little piece of liquid code to show the link when is available.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>
 {% if page.translated %}
@@ -257,9 +257,9 @@ language: en
 </div>
 
 <h4 id="pagination">Pagination</h4>
-<p>For some hours I was obsessed to find a way to do pagination without using a plugin, silly me..</p>
+<p>For some hours I was obsessed to find a way to do the pagination without using a plugin, silly me..</p>
 
-<p>Only when accepted how Jekyll works I took the decision to give it a try to ruby and write a plugin and you should do the same :)</p>
+<p>Only when accepted how Jekyll works, I took the decision to give a try to ruby and write a plugin. And you should do the same :)</p>
 
 <p>Feel free to fork mine and play around:</p>
 
@@ -291,5 +291,17 @@ $("#menu-toggle").click(function(e) {
 
 
     </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-77109525-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
   </body>
 </html>
