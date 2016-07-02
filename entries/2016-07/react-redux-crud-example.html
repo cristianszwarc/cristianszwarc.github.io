@@ -10,7 +10,7 @@
 
   <title>
     
-      Jekyll bilingüe &middot; C. Szwarc
+      Diving into React Redux &middot; C. Szwarc
     
   </title>
 
@@ -50,15 +50,12 @@
         
           <!-- include in the menu any node for the active language or the global ones (no language) -->
           
-        
-          <!-- include in the menu any node for the active language or the global ones (no language) -->
-          
             <!-- ignore pages that were cloned by the pagination process -->
             
             <li>
               <a class=""
-                href="/inicio/">
-                Génesis
+                href="/">
+                Genesis
                 
               </a>
             </li>
@@ -74,8 +71,8 @@
             
             <li>
               <a class=" active "
-                href="/entradas/">
-                Entradas
+                href="/entries/">
+                Entries
                  (4) 
               </a>
             </li>
@@ -91,12 +88,15 @@
             
             <li>
               <a class=""
-                href="/quien/">
-                Quién?
+                href="/about/">
+                About
                 
               </a>
             </li>
             
+          
+        
+          <!-- include in the menu any node for the active language or the global ones (no language) -->
           
         
 
@@ -106,8 +106,8 @@
 
         <li>
           
-            <a href="/">
-              in English, please
+            <a href="/inicio">
+              en Español!
             </a>
           
         </li>
@@ -127,14 +127,14 @@
         <div id="mainContainer" class="container-fluid">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             <h3>
-              Jekyll bilingüe
+              Diving into React Redux
               
-                <small>Y aquí vamos de nuevo</small>
+                <small>a complete CRUD example</small>
               
               
   <div class="translated">
-      <a href="/entries/2016-03/bilingual_jekyll.html" >English</a>
-      <a href="/entries/2016-03/bilingual_jekyll.html" class="active">Español</a>
+      <a href="/entradas/2016-07/abml-ejemplo-react-redux.html" class="active">English</a>
+      <a href="/entradas/2016-07/abml-ejemplo-react-redux.html" >Español</a>
   </div>
   <div class="clearfix"></div>
 
@@ -142,141 +142,31 @@
             </h3>
             <hr>
             <div class="post">
-  <span class="post-date">13 Mar 2016</span>
-  <p>La paradoja de las opciones (<a href="https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=enN52MGjskyoalXaraOC3jg&amp;bvm=bv.116636494,d.dGY">TED</a>) me ha dejado con un sitio a medias o no publicado por años.</p>
+  <span class="post-date">01 Jul 2016</span>
+  <p>Some months ago I saw Dan Abramov’s talk about Redux, hot reloading and time travel.
+<a href="https://www.youtube.com/watch?v=xsSnOQynTHs">Youtube</a></p>
 
-<p>En un nuevo intento por mantener un sitio web personal, esta vez estoy intentando dejar de lado la responsabilidad de tomar decisiones y simplemente usar lo que ya existe sin <em>re inventar la rueda</em>. Al final del día, en la mayoría de los casos, lo que cuenta es el contenido y no el template o si el CMS fue echo en casa.</p>
+<p>I have never tried React before, but I was unable to resist the temptation of giving it a try after seeing that.</p>
 
-<p>Será este otro sitio como tantos otros llenos de recortes de código y links a cosas locas? muy probablemente!</p>
+<p>Took me some trials and errors but finally the expected “click” arrived and I felt amazed by how this works.</p>
 
-<p>Un cuaderno de apuntes donde pueda acceder a buscar esos comandos que siempre olvido y si es posible que ayude a algún transeúnte con algún tip así como tantos otros blogs me ayudan día a día a ganarme el pan.</p>
+<p>After these initial tests I realized why took me extra effort to understand how Redux works, and on my case it was because I misunderstood how the state and data are separated and how they interact.</p>
 
-<h3 id="jekyll-bilinge">Jekyll bilingüe</h3>
-<p>Elegí usar <a href="https://jekyllrb.com/">Jekyll</a> para este blog en un intento por limitar tentaciones de toquetear código.</p>
+<p>In a lot of examples the data is just a global variable declared on the same file than the actions without much explanation about what is going on there, this caused me a lot of confusion until I understood that these variables were there just for the sake of the examples.</p>
 
-<p>Pero Jekyll resultó mucho más completo de lo esperado y al par de horas ya estaba instalando plugins para hacerlo bilingüe, ya desviado del plan original.</p>
+<p>So to get my ideas in place I have created a CRUD example with a more “realistic” API in place and a lot of comments.</p>
 
-<p>Algunos plugins no funcionan y otros son muy complejos, así que opté por una forma sencilla de manejar ambos idiomas en un mismo sitio “sin” plugins (ver último paso).</p>
+<p>This CRUD uses async calls to simulate a remote API, the creation of this CRUD was a very good way to get into React Redux and it may be useful for others that are looking for a basic yet quite complete example.</p>
 
-<h4 id="primer-paso">Primer paso</h4>
-<p>Agregar una variable <code class="highlighter-rouge">language</code> a cada página o post (en otras palabras <strong>a todo</strong>).</p>
+<h3 id="source-code-and-demo">Source code and demo</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: page
-title: Some page
-language: en
----
-Phasellus gravida semper nisi. Nunc nonummy metus.
-</code></pre>
-</div>
+<p>Get the source code from GitHub</p>
 
-<h4 id="segundo-paso-men">Segundo paso, menú</h4>
-<p>Hacer que el menú y otras partes se adapten al lenguaje activo. El lenguaje activo queda definido por la variable que agregamos a cada página/post.</p>
+<p><a href="http://cristianszwarc.github.io/react_crud_localStorage/">Demo</a></p>
 
-<p>Ejemplo en el menú:</p>
+<p><a href="https://github.com/cristianszwarc/react_crud_localStorage">Source Code</a></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
-<span class="c">&lt;!-- links manuales --&gt;</span>
-{% if page.language == 'es' %}
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/inicio"</span><span class="nt">&gt;</span>Inicio<span class="nt">&lt;/a&gt;</span>
-{% else %}
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
-{% endif %}
-
-<span class="c">&lt;!-- links a páginas sueltas --&gt;</span>
-{% assign pages_list = site.pages %}
-{% for node in pages_list %}
-  <span class="c">&lt;!-- solo incluir páginas que usen el layout page --&gt;</span>
-  {% if node.layout == "page" %}
-    <span class="c">&lt;!-- mostrar link si el item es del mismo idioma
-      que la página que estamos viendo actualmente --&gt;</span>
-    {% if node.language == page.language %}
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ node.url }}"</span><span class="nt">&gt;</span>
-        {{ node.title }}
-      <span class="nt">&lt;/a&gt;</span>
-    {% endif %}
-  {% endif %}
-{% endfor %}
-
-</code></pre>
-</div>
-
-<h4 id="tercero-link-entre-idiomas-opcional">Tercero, link entre idiomas (opcional)</h4>
-<p>Agregar un link automático entre artículos disponibles en ambos idiomas.</p>
-
-<p>Para esto hay que tener un permalink definido en ambos artículos y una variable extra para indicar el permalink del <em>otro</em> artículo.</p>
-
-<p>Ejemplo post <code class="highlighter-rouge">2016-03-01-here_we_go_again.md</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: post
-title: Here we go again
-permalink: /entries/here_we_go_again.html
-translated: /entradas/aqui_vamos_de_nuevo.html
-language: en
----
-English version...
-</code></pre>
-</div>
-
-<p>Ejemplo post <code class="highlighter-rouge">2016-03-01-aqui_vamos_de_nuevo.md</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: post
-title: Aquí vamos de nuevo
-permalink: /entradas/aqui_vamos_de_nuevo.html
-translated: /entries/here_we_go_again.html
-language: es
----
-Version en Español...
-</code></pre>
-</div>
-
-<p>Con esto podemos incluir en la plantilla del post un link automático para moverse de un idioma a otro:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>
-{% if page.translated %}
-	{% if page.language == 'es' %}
-		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Read in English<span class="nt">&lt;/a&gt;</span>
-	{% else %}
-		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Ver en Español<span class="nt">&lt;/a&gt;</span>
-	{% endif %}
-{% endif %}
-
-</code></pre>
-</div>
-
-<h4 id="cuarto-filtrar-posts-por-idioma">Cuarto, Filtrar posts por idioma</h4>
-<p>En un listado de posts, la variable de lenguaje cumple dos objetivos, 1ro indicar al resto del sitio web el lenguaje actual (ejemplo para que el menú muestre los items correctos) y 2do se utiliza para filtrar los posts a mostrar.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>
----
-layout: default
-title: Entries
-language: en
----
-{% assign posts = site.posts | where: "language", page.language %}
-<span class="nt">&lt;ul&gt;</span>
-{% for post in posts limit:3 %}
-  <span class="nt">&lt;Ol&gt;</span>{{ post.title }}<span class="nt">&lt;/ol&gt;</span>
-{% endfor %}
-<span class="nt">&lt;/ul&gt;</span>
-
-</code></pre>
-</div>
-
-<h4 id="paginar">Paginar</h4>
-<p>Hasta aquí llegamos sin plugins ni cosas raras, pero si queremos paginar los posts no encontré otra salida que usar un plugin.</p>
-
-<p>Hay muchos plugins para paginar categorías y también hay plugins para manejar lenguajes, pero encontré poca información sobre como paginar categorías en multiples idiomas, así que terminé armando un pequeño plugin a mi gusto. Lo dejo disponible en GitHub: <a href="https://github.com/cristianszwarc/JekyllLanguageAndCategoriesPagination">Jekyll Language and categories pagination</a></p>
-
-<p>También terminé armando un plugin para poder marcar el rubro correcto en el menú cuando se está leyendo un post. No es la gran cosa así que esta incluido sin propaganda en el mismo git.</p>
-
-<h4 id="conclusin">Conclusión</h4>
-<p>De los días que llevo jugando con Jekyll me parece una herramienta fantástica para programadores y afines.
-Es verdad que por momentos me sentí limitado cuando mientras buscaba “la forma perfecta” de mantener un sitio bilingüe pero al final habiendo escrito un plugin que me brinda lo que buscaba puedo entender por qué tiene tantos adeptos.</p>
-
-<p>Escribiendo estas lineas en <a href="https://stackedit.io">stackedit.io</a> de momento puedo decir que quizás este podría ser este el final de una larga búsqueda por un sitio web personal.</p>
+<p><img src="/assets/2016-07-02-react-redux-localstorage.png" alt="React Redux CRUD" /></p>
 
 </div>
 
