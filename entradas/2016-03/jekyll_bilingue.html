@@ -67,16 +67,50 @@
         
           <!-- include in the menu any node for the active language or the global ones (no language) -->
           
-        
-          <!-- include in the menu any node for the active language or the global ones (no language) -->
-          
             <!-- ignore pages that were cloned by the pagination process -->
             
             <li>
               <a class=" active "
                 href="/entradas/">
                 Entradas
-                 (4) 
+                 (6) 
+              </a>
+            </li>
+            
+          
+        
+          <!-- include in the menu any node for the active language or the global ones (no language) -->
+          
+        
+          <!-- include in the menu any node for the active language or the global ones (no language) -->
+          
+            <!-- ignore pages that were cloned by the pagination process -->
+            
+            <li>
+              <a class=""
+                href="/entradas/iot/">
+                IoT
+                 (2) 
+              </a>
+            </li>
+            
+          
+        
+          <!-- include in the menu any node for the active language or the global ones (no language) -->
+          
+        
+          <!-- include in the menu any node for the active language or the global ones (no language) -->
+          
+        
+          <!-- include in the menu any node for the active language or the global ones (no language) -->
+          
+            <!-- ignore pages that were cloned by the pagination process -->
+            
+            <li>
+              <a class=""
+                href="/entradas/JavaScript/">
+                JavaScript
+                 (3) 
               </a>
             </li>
             
@@ -151,7 +185,7 @@
 
 <p>Un cuaderno de apuntes donde pueda acceder a buscar esos comandos que siempre olvido y si es posible que ayude a algún transeúnte con algún tip así como tantos otros blogs me ayudan día a día a ganarme el pan.</p>
 
-<h3 id="jekyll-bilinge">Jekyll bilingüe</h3>
+<h3 id="jekyll-bilingüe">Jekyll bilingüe</h3>
 <p>Elegí usar <a href="https://jekyllrb.com/">Jekyll</a> para este blog en un intento por limitar tentaciones de toquetear código.</p>
 
 <p>Pero Jekyll resultó mucho más completo de lo esperado y al par de horas ya estaba instalando plugins para hacerlo bilingüe, ya desviado del plan original.</p>
@@ -170,12 +204,12 @@ Phasellus gravida semper nisi. Nunc nonummy metus.
 </code></pre>
 </div>
 
-<h4 id="segundo-paso-men">Segundo paso, menú</h4>
+<h4 id="segundo-paso-menú">Segundo paso, menú</h4>
 <p>Hacer que el menú y otras partes se adapten al lenguaje activo. El lenguaje activo queda definido por la variable que agregamos a cada página/post.</p>
 
 <p>Ejemplo en el menú:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>
 <span class="c">&lt;!-- links manuales --&gt;</span>
 {% if page.language == 'es' %}
   <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/inicio"</span><span class="nt">&gt;</span>Inicio<span class="nt">&lt;/a&gt;</span>
@@ -234,7 +268,7 @@ Version en Español...
 
 <p>Con esto podemos incluir en la plantilla del post un link automático para moverse de un idioma a otro:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>
 {% if page.translated %}
 	{% if page.language == 'es' %}
 		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Read in English<span class="nt">&lt;/a&gt;</span>
@@ -249,7 +283,7 @@ Version en Español...
 <h4 id="cuarto-filtrar-posts-por-idioma">Cuarto, Filtrar posts por idioma</h4>
 <p>En un listado de posts, la variable de lenguaje cumple dos objetivos, 1ro indicar al resto del sitio web el lenguaje actual (ejemplo para que el menú muestre los items correctos) y 2do se utiliza para filtrar los posts a mostrar.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>
 ---
 layout: default
 title: Entries
@@ -272,7 +306,7 @@ language: en
 
 <p>También terminé armando un plugin para poder marcar el rubro correcto en el menú cuando se está leyendo un post. No es la gran cosa así que esta incluido sin propaganda en el mismo git.</p>
 
-<h4 id="conclusin">Conclusión</h4>
+<h4 id="conclusión">Conclusión</h4>
 <p>De los días que llevo jugando con Jekyll me parece una herramienta fantástica para programadores y afines.
 Es verdad que por momentos me sentí limitado cuando mientras buscaba “la forma perfecta” de mantener un sitio bilingüe pero al final habiendo escrito un plugin que me brinda lo que buscaba puedo entender por qué tiene tantos adeptos.</p>
 

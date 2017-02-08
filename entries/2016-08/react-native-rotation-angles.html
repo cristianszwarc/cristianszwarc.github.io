@@ -10,7 +10,7 @@
 
   <title>
     
-      Bilingual Jekyll &middot; C. Szwarc
+      Getting rotation information with react native &middot; C. Szwarc
     
   </title>
 
@@ -161,14 +161,14 @@
         <div id="mainContainer" class="container-fluid">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             <h3>
-              Bilingual Jekyll
+              Getting rotation information with react native
               
-                <small>A new website attempt</small>
+                <small>a module for iOS</small>
               
               
   <div class="translated">
-      <a href="/entradas/2016-03/jekyll_bilingue.html" class="active">English</a>
-      <a href="/entradas/2016-03/jekyll_bilingue.html" >Español</a>
+      <a href="/entradas/2016-08/react-native-rotacion-angulos.html" class="active">English</a>
+      <a href="/entradas/2016-08/react-native-rotacion-angulos.html" >Español</a>
   </div>
   <div class="clearfix"></div>
 
@@ -176,135 +176,24 @@
             </h3>
             <hr>
             <div class="post">
-  <span class="post-date">13 Mar 2016</span>
-  <p>The paradox of choice (<a href="https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=enN52MGjskyoalXaraOC3jg&amp;bvm=bv.116636494,d.dGY">TED</a>) left me without a working website for years…</p>
+  <span class="post-date">20 Aug 2016</span>
+  <p>After trying <a href="/entries/2016-07/react-redux-crud-example.html">React with redux</a> cross my mind to check React Native.</p>
 
-<p>In a new attempt to finally have and keep a personal website I’m trying Jekyll.</p>
+<p>I Did the usual “hello world” and yes.. is amazing. Thing is, this got me thinking about accessing to the native side of the app when you need that 20% extra work to finish your development.</p>
 
-<h3 id="bilingual-jekyll">Bilingual Jekyll</h3>
-<p>Despite I have tried to “keep it simple” I was in need of a website with support for English and Spanish, so I tried some plugins, some were too complex and other were obsolete.</p>
+<p>Because I was already playing with the giroscope, cross my mind to get some rotational information from the device.</p>
 
-<p>I then tried to have both languages working without plugins, is possible but you lose the pagination.</p>
+<p>I found no library for this purpose that night, and so this was a good excuse to create a little library and test how these pieces fit together.</p>
 
-<p>Here I will share some of the tricks I’m using on liquid (templating language) and a link to the pagination plugin I wrote to have pagination for multiple languages with category support.</p>
+<p>To my surprise, it was not that hard and some minutes later I had something working.</p>
 
-<h4 id="add-the-language-to-any-pagepost">Add the language to any page/post</h4>
-<p>This is the way of knowing the “current language”, it will be used to filter the pages/posts on menus and lists.</p>
+<p><img src="/assets/2016-08-20-react-native-angles.png" alt="RNDeviceAngles" /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: page
-title: Some page
-language: en
----
-Phasellus gravida semper nisi. Nunc nonummy metus.
-</code></pre>
-</div>
+<h3 id="source-code">Source code</h3>
 
-<h4 id="filter-pages-to-build-a-menu">Filter pages to build a menu</h4>
-<p>Because all pages will have the previously added language, you can then loop over the pages and create a dynamic menu.</p>
+<p>Get the source code from GitHub</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
-
-<span class="c">&lt;!-- get the pages (no the posts) --&gt;</span>
-{% assign pages_list = site.pages %}
-
-<span class="c">&lt;!-- loop over the pages --&gt;</span>
-{% for node in pages_list %}
-  <span class="c">&lt;!-- only add the pages that are using the "page" layout  --&gt;</span>
-  {% if node.layout == "page" %}
-    <span class="c">&lt;!-- only include a link to the page if the language matches the language of the current page --&gt;</span>
-    {% if node.language == page.language %}
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ node.url }}"</span><span class="nt">&gt;</span>
-        {{ node.title }}
-      <span class="nt">&lt;/a&gt;</span>
-    {% endif %}
-  {% endif %}
-{% endfor %}
-
-</code></pre>
-</div>
-
-<h4 id="add-links-between-translated-postspages">Add links between translated posts/pages</h4>
-<p>Some times you will have pages/posts written in both languages, and is good to have a link between the two versions.</p>
-
-<p>The trick I’m using (of course I saw this around), is to have the link to the translated post as a tag and use it when available.</p>
-
-<p>Example <code class="highlighter-rouge">2016-03-01-here_we_go_again.md</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: post
-title: Here we go again
-permalink: /entries/here_we_go_again.html
-translated: /entradas/aqui_vamos_de_nuevo.html
-language: en
----
-English version...
-</code></pre>
-</div>
-
-<p>Example post <code class="highlighter-rouge">2016-03-01-aqui_vamos_de_nuevo.md</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: post
-title: Aquí vamos de nuevo
-permalink: /entradas/aqui_vamos_de_nuevo.html
-translated: /entries/here_we_go_again.html
-language: es
----
-Version en Español...
-</code></pre>
-</div>
-
-<p>As you can see, both articles contains a <code class="highlighter-rouge">translated</code> tag pointing to the other one.</p>
-
-<p>You can then add a little piece of liquid code to show the link when is available.</p>
-
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
-{% if page.translated %}
-	{% if page.language == 'es' %}
-		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Read in English<span class="nt">&lt;/a&gt;</span>
-	{% else %}
-		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Ver en Español<span class="nt">&lt;/a&gt;</span>
-	{% endif %}
-{% endif %}
-
-</code></pre>
-</div>
-
-<h4 id="filtering-posts-by-language">Filtering posts by language</h4>
-<p>For the home page were I want to show some items I’m filtering the languages with something like this:</p>
-
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
----
-layout: default
-title: Entries
-language: en
----
-{% assign posts = site.posts | where: "language", page.language %}
-<span class="nt">&lt;ul&gt;</span>
-{% for post in posts limit:3 %}
-  <span class="nt">&lt;Ol&gt;</span>{{ post.title }}<span class="nt">&lt;/ol&gt;</span>
-{% endfor %}
-<span class="nt">&lt;/ul&gt;</span>
-
-</code></pre>
-</div>
-
-<h4 id="pagination">Pagination</h4>
-<p>For some hours I was obsessed to find a way to do the pagination without using a plugin, silly me..</p>
-
-<p>Only when accepted how Jekyll works, I took the decision to give a try to ruby and write a plugin. And you should do the same :)</p>
-
-<p>Feel free to fork mine and play around:</p>
-
-<p>GitHub: <a href="https://github.com/cristianszwarc/JekyllLanguageAndCategoriesPagination">Jekyll Language and categories pagination</a></p>
-
-<h4 id="conclusion">conclusion</h4>
-<p>This looks promising, maybe I will finally have an updated website.</p>
-
-<p>Exporting the website into plain html and the use of Markdown are a big thing, I totally understand why this became so popular among developers but I would not use it for end clients that require direct control over their content of course.</p>
-
-<p>I’m trying <a href="https://stackedit.io">stackedit.io</a> to write the Markdown, works offline and you can manage multiple documents. Good stuff</p>
+<p><a href="https://github.com/cristianszwarc/RNDeviceAngles">Source Code</a></p>
 
 </div>
 

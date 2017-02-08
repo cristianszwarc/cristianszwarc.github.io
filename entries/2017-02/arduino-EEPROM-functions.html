@@ -10,7 +10,7 @@
 
   <title>
     
-      Bilingual Jekyll &middot; C. Szwarc
+      Store config settings in EEPROM &middot; C. Szwarc
     
   </title>
 
@@ -161,14 +161,14 @@
         <div id="mainContainer" class="container-fluid">
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             <h3>
-              Bilingual Jekyll
+              Store config settings in EEPROM
               
-                <small>A new website attempt</small>
+                <small>library for platformio and arduino</small>
               
               
   <div class="translated">
-      <a href="/entradas/2016-03/jekyll_bilingue.html" class="active">English</a>
-      <a href="/entradas/2016-03/jekyll_bilingue.html" >Español</a>
+      <a href="/entradas/2017-02/arduino-EEPROM-functions.html" class="active">English</a>
+      <a href="/entradas/2017-02/arduino-EEPROM-functions.html" >Español</a>
   </div>
   <div class="clearfix"></div>
 
@@ -176,135 +176,88 @@
             </h3>
             <hr>
             <div class="post">
-  <span class="post-date">13 Mar 2016</span>
-  <p>The paradox of choice (<a href="https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=enN52MGjskyoalXaraOC3jg&amp;bvm=bv.116636494,d.dGY">TED</a>) left me without a working website for years…</p>
+  <span class="post-date">08 Feb 2017</span>
+  <p>No much to say. Just want to share some functions I wrote that fits with <a href="https://github.com/cristianszwarc/SerialCommander">SerialCommander</a>, both libraries can be used together to allow users to configure their devices by using the serial port.</p>
 
-<p>In a new attempt to finally have and keep a personal website I’m trying Jekyll.</p>
+<p>This are some of the functions included:</p>
 
-<h3 id="bilingual-jekyll">Bilingual Jekyll</h3>
-<p>Despite I have tried to “keep it simple” I was in need of a website with support for English and Spanish, so I tried some plugins, some were too complex and other were obsolete.</p>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="p">...</span>
+<span class="c1">// define how many fields we want to store (default def is 10)
+</span><span class="cp">#define CONFIG_FUNCTIONS_MAX_LENGTH 8
+#include &lt;ConfigCommander.h&gt;
+</span>
+<span class="c1">// define a constant for each field slot (optional to improve the code readability)
+</span><span class="cp">#define CONFIG_NAME 0 
+#define CONFIG_IP 1
+#define CONFIG_GATEWAY 2
+#define CONFIG_MASK 3
+#define CONFIG_DNS 4
+#define CONFIG_SERVER 5
+#define CONFIG_SERVER_PORT 6
+#define CONFIG_MAC 7
+</span>
+<span class="n">ConfigCommander</span> <span class="n">MyConfigCommander</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="kt">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
 
-<p>I then tried to have both languages working without plugins, is possible but you lose the pagination.</p>
+<span class="p">...</span>
 
-<p>Here I will share some of the tricks I’m using on liquid (templating language) and a link to the pagination plugin I wrote to have pagination for multiple languages with category support.</p>
+<span class="c1">// define config fields size
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_NAME</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>     <span class="c1">// device name: 20 char
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_IP</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>       <span class="c1">// ip: 15 bytes
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_GATEWAY</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>  <span class="c1">// gateway: 15 bytes
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_MASK</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>     <span class="c1">// mask: 15 bytes
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_DNS</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>      <span class="c1">// dns: 15 bytes
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_MAC</span><span class="p">,</span> <span class="mi">17</span><span class="p">);</span>      <span class="c1">// mac: 17 bytes
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_SERVER</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>   <span class="c1">// server domain: 30 char
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">setSize</span><span class="p">(</span><span class="n">CONFIG_SERVER_PORT</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>   <span class="c1">// server port: 4 char
+</span>
+<span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>                 <span class="c1">// clean memory on new boards
+</span>
+<span class="p">...</span>
 
-<h4 id="add-the-language-to-any-pagepost">Add the language to any page/post</h4>
-<p>This is the way of knowing the “current language”, it will be used to filter the pages/posts on menus and lists.</p>
+<span class="c1">// print current board name
+</span><span class="kt">char</span> <span class="n">boardName</span><span class="p">[</span><span class="mi">21</span><span class="p">];</span> <span class="c1">// field size plus terminator
+</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">readConfig</span><span class="p">(</span><span class="n">CONFIG_NAME</span><span class="p">,</span> <span class="n">boardName</span><span class="p">);</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Board: "</span><span class="p">));</span>
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">boardName</span><span class="p">);</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: page
-title: Some page
-language: en
----
-Phasellus gravida semper nisi. Nunc nonummy metus.
+<span class="p">...</span>
+
+<span class="c1">// store a new board name
+</span><span class="kt">char</span> <span class="n">newBoardName</span><span class="p">[</span><span class="mi">21</span><span class="p">]</span> <span class="o">=</span> <span class="s">"My Device"</span><span class="p">;</span> <span class="c1">// field size plus terminator
+</span><span class="k">if</span> <span class="p">(</span><span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">saveConfig</span><span class="p">(</span><span class="n">CONFIG_NAME</span><span class="p">,</span> <span class="n">newBoardName</span><span class="p">))</span> <span class="p">{</span>
+	<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Saved"</span><span class="p">));</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Fail"</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="p">...</span>
+
+<span class="c1">// read ethernet settings
+</span><span class="n">byte</span> <span class="n">mac</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+<span class="n">byte</span> <span class="n">ip</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="n">byte</span> <span class="n">gateway</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="n">byte</span> <span class="n">dnsServer</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="n">byte</span> <span class="n">subnet</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+
+<span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">readIP</span><span class="p">(</span><span class="n">CONFIG_IP</span><span class="p">,</span> <span class="n">ip</span><span class="p">);</span>
+<span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">readIP</span><span class="p">(</span><span class="n">CONFIG_GATEWAY</span><span class="p">,</span> <span class="n">gateway</span><span class="p">);</span>
+<span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">readIP</span><span class="p">(</span><span class="n">CONFIG_DNS</span><span class="p">,</span> <span class="n">dnsServer</span><span class="p">);</span>
+<span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">readIP</span><span class="p">(</span><span class="n">CONFIG_MASK</span><span class="p">,</span> <span class="n">subnet</span><span class="p">);</span>
+<span class="n">MyConfigCommander</span><span class="p">.</span><span class="n">readMAC</span><span class="p">(</span><span class="n">CONFIG_MAC</span><span class="p">,</span> <span class="n">mac</span><span class="p">);</span>
+
+<span class="n">Ethernet</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">mac</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">dnsServer</span><span class="p">,</span> <span class="n">gateway</span><span class="p">,</span> <span class="n">subnet</span><span class="p">);</span>
+
+<span class="p">}</span>
 </code></pre>
 </div>
 
-<h4 id="filter-pages-to-build-a-menu">Filter pages to build a menu</h4>
-<p>Because all pages will have the previously added language, you can then loop over the pages and create a dynamic menu.</p>
+<h3 id="source-code">Source code</h3>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<p>Get the source code from GitHub</p>
 
-<span class="c">&lt;!-- get the pages (no the posts) --&gt;</span>
-{% assign pages_list = site.pages %}
-
-<span class="c">&lt;!-- loop over the pages --&gt;</span>
-{% for node in pages_list %}
-  <span class="c">&lt;!-- only add the pages that are using the "page" layout  --&gt;</span>
-  {% if node.layout == "page" %}
-    <span class="c">&lt;!-- only include a link to the page if the language matches the language of the current page --&gt;</span>
-    {% if node.language == page.language %}
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ node.url }}"</span><span class="nt">&gt;</span>
-        {{ node.title }}
-      <span class="nt">&lt;/a&gt;</span>
-    {% endif %}
-  {% endif %}
-{% endfor %}
-
-</code></pre>
-</div>
-
-<h4 id="add-links-between-translated-postspages">Add links between translated posts/pages</h4>
-<p>Some times you will have pages/posts written in both languages, and is good to have a link between the two versions.</p>
-
-<p>The trick I’m using (of course I saw this around), is to have the link to the translated post as a tag and use it when available.</p>
-
-<p>Example <code class="highlighter-rouge">2016-03-01-here_we_go_again.md</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: post
-title: Here we go again
-permalink: /entries/here_we_go_again.html
-translated: /entradas/aqui_vamos_de_nuevo.html
-language: en
----
-English version...
-</code></pre>
-</div>
-
-<p>Example post <code class="highlighter-rouge">2016-03-01-aqui_vamos_de_nuevo.md</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>---
-layout: post
-title: Aquí vamos de nuevo
-permalink: /entradas/aqui_vamos_de_nuevo.html
-translated: /entries/here_we_go_again.html
-language: es
----
-Version en Español...
-</code></pre>
-</div>
-
-<p>As you can see, both articles contains a <code class="highlighter-rouge">translated</code> tag pointing to the other one.</p>
-
-<p>You can then add a little piece of liquid code to show the link when is available.</p>
-
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
-{% if page.translated %}
-	{% if page.language == 'es' %}
-		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Read in English<span class="nt">&lt;/a&gt;</span>
-	{% else %}
-		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Ver en Español<span class="nt">&lt;/a&gt;</span>
-	{% endif %}
-{% endif %}
-
-</code></pre>
-</div>
-
-<h4 id="filtering-posts-by-language">Filtering posts by language</h4>
-<p>For the home page were I want to show some items I’m filtering the languages with something like this:</p>
-
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
----
-layout: default
-title: Entries
-language: en
----
-{% assign posts = site.posts | where: "language", page.language %}
-<span class="nt">&lt;ul&gt;</span>
-{% for post in posts limit:3 %}
-  <span class="nt">&lt;Ol&gt;</span>{{ post.title }}<span class="nt">&lt;/ol&gt;</span>
-{% endfor %}
-<span class="nt">&lt;/ul&gt;</span>
-
-</code></pre>
-</div>
-
-<h4 id="pagination">Pagination</h4>
-<p>For some hours I was obsessed to find a way to do the pagination without using a plugin, silly me..</p>
-
-<p>Only when accepted how Jekyll works, I took the decision to give a try to ruby and write a plugin. And you should do the same :)</p>
-
-<p>Feel free to fork mine and play around:</p>
-
-<p>GitHub: <a href="https://github.com/cristianszwarc/JekyllLanguageAndCategoriesPagination">Jekyll Language and categories pagination</a></p>
-
-<h4 id="conclusion">conclusion</h4>
-<p>This looks promising, maybe I will finally have an updated website.</p>
-
-<p>Exporting the website into plain html and the use of Markdown are a big thing, I totally understand why this became so popular among developers but I would not use it for end clients that require direct control over their content of course.</p>
-
-<p>I’m trying <a href="https://stackedit.io">stackedit.io</a> to write the Markdown, works offline and you can manage multiple documents. Good stuff</p>
+<p><a href="https://github.com/cristianszwarc/ConfigCommander">Source Code</a></p>
 
 </div>
 
