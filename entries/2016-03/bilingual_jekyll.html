@@ -76,7 +76,7 @@
               <a class=" active "
                 href="/entries/">
                 Entries
-                 (7) 
+                 (8) 
               </a>
             </li>
             
@@ -191,19 +191,18 @@
 <h4 id="add-the-language-to-any-pagepost">Add the language to any page/post</h4>
 <p>This is the way of knowing the “current language”, it will be used to filter the pages/posts on menus and lists.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: page
 title: Some page
 language: en
 ---
 Phasellus gravida semper nisi. Nunc nonummy metus.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="filter-pages-to-build-a-menu">Filter pages to build a menu</h4>
 <p>Because all pages will have the previously added language, you can then loop over the pages and create a dynamic menu.</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 
 <span class="c">&lt;!-- get the pages (no the posts) --&gt;</span>
 {% assign pages_list = site.pages %}
@@ -221,8 +220,7 @@ Phasellus gravida semper nisi. Nunc nonummy metus.
   {% endif %}
 {% endfor %}
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="add-links-between-translated-postspages">Add links between translated posts/pages</h4>
 <p>Some times you will have pages/posts written in both languages, and is good to have a link between the two versions.</p>
@@ -231,7 +229,7 @@ Phasellus gravida semper nisi. Nunc nonummy metus.
 
 <p>Example <code class="highlighter-rouge">2016-03-01-here_we_go_again.md</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: post
 title: Here we go again
 permalink: /entries/here_we_go_again.html
@@ -239,12 +237,11 @@ translated: /entradas/aqui_vamos_de_nuevo.html
 language: en
 ---
 English version...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Example post <code class="highlighter-rouge">2016-03-01-aqui_vamos_de_nuevo.md</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: post
 title: Aquí vamos de nuevo
 permalink: /entradas/aqui_vamos_de_nuevo.html
@@ -252,14 +249,13 @@ translated: /entries/here_we_go_again.html
 language: es
 ---
 Version en Español...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>As you can see, both articles contains a <code class="highlighter-rouge">translated</code> tag pointing to the other one.</p>
 
 <p>You can then add a little piece of liquid code to show the link when is available.</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 {% if page.translated %}
 	{% if page.language == 'es' %}
 		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Read in English<span class="nt">&lt;/a&gt;</span>
@@ -268,13 +264,12 @@ Version en Español...
 	{% endif %}
 {% endif %}
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="filtering-posts-by-language">Filtering posts by language</h4>
 <p>For the home page were I want to show some items I’m filtering the languages with something like this:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 ---
 layout: default
 title: Entries
@@ -287,8 +282,7 @@ language: en
 {% endfor %}
 <span class="nt">&lt;/ul&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="pagination">Pagination</h4>
 <p>For some hours I was obsessed to find a way to do the pagination without using a plugin, silly me..</p>

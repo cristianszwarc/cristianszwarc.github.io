@@ -76,7 +76,7 @@
               <a class=" active "
                 href="/entries/">
                 Entries
-                 (7) 
+                 (8) 
               </a>
             </li>
             
@@ -201,20 +201,18 @@
 
 <p>The solution is quite simple, accept characters until a new line is detected or a timeout is reached.</p>
 
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="p">...</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="p">...</span>
 	<span class="k">if</span> <span class="p">(</span><span class="n">MyCommander</span><span class="p">.</span><span class="n">read</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
 		<span class="n">MyCommander</span><span class="p">.</span><span class="n">is</span><span class="p">(</span><span class="s">"surrender"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
 		<span class="n">MyCommander</span><span class="p">.</span><span class="n">confirm</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="s">"Are you sure?"</span><span class="p">))</span> <span class="p">{</span>
-		<span class="c1">// do something
-</span>	<span class="p">}</span>
+		<span class="c1">// do something</span>
+	<span class="p">}</span>
 	<span class="p">...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="platformio">PlatformIO</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>platformio lib install 288
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>platformio lib install 288
+</code></pre></div></div>
 
 <p><a href="http://platformio.org/lib/show/288/SerialCommander">http://platformio.org/lib/show/288/SerialCommander</a></p>
 

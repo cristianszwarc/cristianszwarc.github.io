@@ -73,7 +73,7 @@
               <a class=" active "
                 href="/entradas/">
                 Entradas
-                 (6) 
+                 (7) 
               </a>
             </li>
             
@@ -195,21 +195,20 @@
 <h4 id="primer-paso">Primer paso</h4>
 <p>Agregar una variable <code class="highlighter-rouge">language</code> a cada página o post (en otras palabras <strong>a todo</strong>).</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: page
 title: Some page
 language: en
 ---
 Phasellus gravida semper nisi. Nunc nonummy metus.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="segundo-paso-menú">Segundo paso, menú</h4>
 <p>Hacer que el menú y otras partes se adapten al lenguaje activo. El lenguaje activo queda definido por la variable que agregamos a cada página/post.</p>
 
 <p>Ejemplo en el menú:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c">&lt;!-- links manuales --&gt;</span>
 {% if page.language == 'es' %}
   <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/inicio"</span><span class="nt">&gt;</span>Inicio<span class="nt">&lt;/a&gt;</span>
@@ -232,8 +231,7 @@ Phasellus gravida semper nisi. Nunc nonummy metus.
   {% endif %}
 {% endfor %}
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="tercero-link-entre-idiomas-opcional">Tercero, link entre idiomas (opcional)</h4>
 <p>Agregar un link automático entre artículos disponibles en ambos idiomas.</p>
@@ -242,7 +240,7 @@ Phasellus gravida semper nisi. Nunc nonummy metus.
 
 <p>Ejemplo post <code class="highlighter-rouge">2016-03-01-here_we_go_again.md</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: post
 title: Here we go again
 permalink: /entries/here_we_go_again.html
@@ -250,12 +248,11 @@ translated: /entradas/aqui_vamos_de_nuevo.html
 language: en
 ---
 English version...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Ejemplo post <code class="highlighter-rouge">2016-03-01-aqui_vamos_de_nuevo.md</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: post
 title: Aquí vamos de nuevo
 permalink: /entradas/aqui_vamos_de_nuevo.html
@@ -263,12 +260,11 @@ translated: /entries/here_we_go_again.html
 language: es
 ---
 Version en Español...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Con esto podemos incluir en la plantilla del post un link automático para moverse de un idioma a otro:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 {% if page.translated %}
 	{% if page.language == 'es' %}
 		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.translated }}"</span><span class="nt">&gt;</span>Read in English<span class="nt">&lt;/a&gt;</span>
@@ -277,13 +273,12 @@ Version en Español...
 	{% endif %}
 {% endif %}
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="cuarto-filtrar-posts-por-idioma">Cuarto, Filtrar posts por idioma</h4>
 <p>En un listado de posts, la variable de lenguaje cumple dos objetivos, 1ro indicar al resto del sitio web el lenguaje actual (ejemplo para que el menú muestre los items correctos) y 2do se utiliza para filtrar los posts a mostrar.</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 ---
 layout: default
 title: Entries
@@ -296,8 +291,7 @@ language: en
 {% endfor %}
 <span class="nt">&lt;/ul&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="paginar">Paginar</h4>
 <p>Hasta aquí llegamos sin plugins ni cosas raras, pero si queremos paginar los posts no encontré otra salida que usar un plugin.</p>
